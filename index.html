@@ -4,212 +4,238 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yuri Gomes — AI & Data Engineering</title>
-  <meta name="description" content="Portfólio de Yuri Gomes — AI & Automation Developer, Data Engineering, Python, FastAPI, Power BI. Rio de Janeiro, Brasil.">
-  <meta name="keywords" content="Yuri Gomes, Data Engineering, AI, Python, FastAPI, Power BI, Automação, Rio de Janeiro">
+  <meta name="description" content="Engenharia de dados, automação e inteligência artificial. Soluções que conectam informação a resultado.">
   <meta name="author" content="Yuri Gomes">
-  <meta name="theme-color" content="#6c63ff">
+  <meta name="theme-color" content="#c8ff00">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Yuri Gomes — AI & Data Engineering">
-  <meta property="og:description" content="AI & Automation Developer | Data Engineering | Python | FastAPI | Power BI">
+  <meta property="og:description" content="Engenharia de dados, automação e inteligência artificial.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yuriportifolio.vercel.app">
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/157255680?v=4">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Yuri Gomes — AI & Data Engineering">
-  <meta name="twitter:description" content="AI & Automation Developer | Data Engineering | Python | FastAPI | Power BI">
-
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+  <a href="#main" class="skip-link">Pular para conteúdo</a>
+
   <!-- ── Navbar ── -->
   <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo">YG<span class="dot">.</span></a>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">YG<span class="dot">.</span></a>
       <ul class="nav-links" id="nav-links">
         <li><a href="#about" class="nav-link">Sobre</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#expertise" class="nav-link">Especialidades</a></li>
         <li><a href="#experience" class="nav-link">Experiência</a></li>
         <li><a href="#projects" class="nav-link">Projetos</a></li>
-        <li><a href="#contact" class="nav-link">Contato</a></li>
+        <li><a href="#contact" class="nav-link nav-link--cta">Contato</a></li>
       </ul>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-        <span></span><span></span><span></span>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+        <span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- ── Hero ── -->
-  <header class="hero" id="hero">
-    <div class="hero-container">
-      <div class="hero-text">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Disponível para oportunidades
-        </div>
-        <h1 class="hero-name">Yuri <span class="accent">Gomes</span></h1>
-        <p class="hero-tagline">AI &amp; Automation Developer<span class="typing-cursor">|</span></p>
-        <p class="hero-subtitle">Data Engineering · Python · FastAPI · Power BI</p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Fale Comigo</a>
-          <a href="#projects" class="btn btn-outline">Ver Projetos</a>
-        </div>
-        <div class="hero-socials" id="socials"></div>
-      </div>
-      <div class="hero-image">
-        <div class="avatar-wrapper">
-          <img id="avatar" class="avatar" src="" alt="Foto de perfil de Yuri Gomes">
-          <div class="avatar-ring"></div>
-        </div>
-      </div>
-    </div>
-    <a href="#about" class="scroll-arrow" aria-label="Rolar para baixo">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
-    </a>
-  </header>
+  <main id="main">
 
-  <!-- ── Sobre ── -->
-  <section class="section" id="about">
-    <div class="container">
-      <p class="section-label">Quem sou</p>
-      <h2 class="section-title">Sobre Mim</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p id="bio"></p>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <span class="stat-number" data-target="3">0</span><span class="stat-suffix">+</span>
-            <span class="stat-label">Anos de Experiência</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number" data-target="15">0</span><span class="stat-suffix">+</span>
-            <span class="stat-label">Projetos Entregues</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-number" data-target="5">0</span><span class="stat-suffix">+</span>
-            <span class="stat-label">Empresas Atendidas</span>
+    <!-- ── Hero ── -->
+    <header class="hero" id="hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <p class="hero-eyebrow">AI & Data Engineering — Rio de Janeiro, BR</p>
+          <h1 class="hero-headline">
+            Transformo dados complexos em<br>
+            <span class="hero-accent">decisões inteligentes.</span>
+          </h1>
+          <p class="hero-sub">
+            Desenvolvo soluções de engenharia de dados, automação e inteligência artificial
+            que conectam informação a resultado.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">Ver Projetos</a>
+            <a href="https://www.linkedin.com/in/yurisiqueiragomes/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">LinkedIn →</a>
           </div>
         </div>
-        <div class="about-details">
-          <span class="detail-item" id="location-detail">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span id="location">Rio de Janeiro, Brasil</span>
-          </span>
-          <span class="detail-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-            <span>Every Cybersecurity</span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Skills ── -->
-  <section class="section section-alt" id="skills">
-    <div class="container">
-      <p class="section-label">O que sei</p>
-      <h2 class="section-title">Habilidades</h2>
-      <div class="skills-grid" id="skills-grid">
-        <div class="skill-category fade-in">
-          <h3>Data & Analytics</h3>
-          <div class="skill-items">
-            <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
-            <div class="skill-item"><span class="skill-name">SQL / PostgreSQL</span><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
-            <div class="skill-item"><span class="skill-name">Power BI</span><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
-            <div class="skill-item"><span class="skill-name">Google Sheets</span><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
-            <div class="skill-item"><span class="skill-name">Excel Avançado</span><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
+        <div class="hero-visual">
+          <div class="hero-img-wrapper">
+            <img id="avatar" class="hero-img" src="" alt="Yuri Gomes">
           </div>
-        </div>
-        <div class="skill-category fade-in">
-          <h3>AI & Automation</h3>
-          <div class="skill-items">
-            <div class="skill-item"><span class="skill-name">FastAPI</span><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
-            <div class="skill-item"><span class="skill-name">OpenAI / LLMs</span><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
-            <div class="skill-item"><span class="skill-name">n8n</span><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div></div>
-            <div class="skill-item"><span class="skill-name">APIs REST</span><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
-            <div class="skill-item"><span class="skill-name">Google Apps Script</span><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div></div>
-          </div>
-        </div>
-        <div class="skill-category fade-in">
-          <h3>Ferramentas & Infra</h3>
-          <div class="skill-items">
-            <div class="skill-item"><span class="skill-name">Docker</span><div class="skill-bar"><div class="skill-fill" data-width="70"></div></div></div>
-            <div class="skill-item"><span class="skill-name">Git</span><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
-            <div class="skill-item"><span class="skill-name">Redis</span><div class="skill-bar"><div class="skill-fill" data-width="65"></div></div></div>
-            <div class="skill-item"><span class="skill-name">Salesforce</span><div class="skill-bar"><div class="skill-fill" data-width="70"></div></div></div>
-            <div class="skill-item"><span class="skill-name">Linux</span><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div></div>
+          <div class="hero-deco" aria-hidden="true">
+            <span class="deco-line"></span>
+            <span class="deco-line"></span>
+            <span class="deco-line"></span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- ── Experiência ── -->
-  <section class="section" id="experience">
-    <div class="container">
-      <p class="section-label">Trajetória</p>
-      <h2 class="section-title">Experiência</h2>
-      <div class="timeline" id="timeline"></div>
-    </div>
-  </section>
-
-  <!-- ── Projetos ── -->
-  <section class="section section-alt" id="projects">
-    <div class="container">
-      <p class="section-label">Portfólio</p>
-      <h2 class="section-title">Projetos</h2>
-      <div class="projects-grid" id="projects-grid">
-        <div class="project-card skeleton"><div class="skeleton-line sk-title"></div><div class="skeleton-line sk-lang"></div></div>
-        <div class="project-card skeleton"><div class="skeleton-line sk-title"></div><div class="skeleton-line sk-lang"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Contato ── -->
-  <section class="section" id="contact">
-    <div class="container">
-      <p class="section-label">Vamos conversar</p>
-      <h2 class="section-title">Contato</h2>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <p class="contact-text">Estou aberto a oportunidades, parcerias e projetos interessantes. Me mande uma mensagem!</p>
-          <div class="contact-channels" id="contact-channels"></div>
+    <!-- ── Sobre ── -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-layout">
+          <div class="about-left">
+            <p class="eyebrow">01 — Sobre</p>
+            <h2 class="section-heading">Quem está<br>por trás do código.</h2>
+          </div>
+          <div class="about-right">
+            <p class="about-text" id="bio">
+              Atuo na interseção entre dados, automação e inteligência artificial.
+              Desenvolvo soluções que transformam informação bruta em decisão —
+              desde pipelines de dados até agentes inteligentes.
+            </p>
+            <p class="about-text">
+              Cada projeto é uma oportunidade de reduzir complexidade e aumentar impacto.
+              Trabalho com foco em resultado, qualidade técnica e escalabilidade.
+            </p>
+            <div class="about-meta">
+              <span class="meta-item">
+                <span class="meta-dot"></span>
+                Every Cybersecurity
+              </span>
+              <span class="meta-item">
+                <span class="meta-dot"></span>
+                Rio de Janeiro, BR
+              </span>
+            </div>
+          </div>
         </div>
-        <form class="contact-form" id="contact-form">
-          <div class="form-group">
-            <input type="text" id="form-name" placeholder=" " required>
-            <label for="form-name">Seu nome</label>
-          </div>
-          <div class="form-group">
-            <input type="email" id="form-email" placeholder=" " required>
-            <label for="form-email">Seu email</label>
-          </div>
-          <div class="form-group">
-            <textarea id="form-message" rows="5" placeholder=" " required></textarea>
-            <label for="form-message">Sua mensagem</label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">
-            <span class="btn-text">Enviar Mensagem</span>
-            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
-          </button>
-        </form>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ── Especialidades ── -->
+    <section class="section section--alt" id="expertise">
+      <div class="container">
+        <p class="eyebrow">02 — Especialidades</p>
+        <h2 class="section-heading">Áreas de atuação.</h2>
+        <div class="expertise-list">
+          <div class="expertise-item">
+            <span class="expertise-num">01</span>
+            <div class="expertise-content">
+              <h3 class="expertise-title">Engenharia de Dados</h3>
+              <p class="expertise-desc">Pipelines, modelagem, governança e qualidade de dados. Do coleta ao armazenamento, com foco em confiabilidade.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <span class="expertise-num">02</span>
+            <div class="expertise-content">
+              <h3 class="expertise-title">Automação Inteligente</h3>
+              <p class="expertise-desc">Integrações, workflows e processos automatizados com IA. Reduzo trabalho manual e aumento velocidade operacional.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <span class="expertise-num">03</span>
+            <div class="expertise-content">
+              <h3 class="expertise-title">Análise & Visualização</h3>
+              <p class="expertise-desc">Dashboards, indicadores e insights orientados a decisão. Transformo números em narrativas acionáveis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Processo ── -->
+    <section class="section" id="process">
+      <div class="container">
+        <p class="eyebrow">03 — Processo</p>
+        <h2 class="section-heading">Como trabalho.</h2>
+        <div class="process-grid">
+          <div class="process-step">
+            <span class="process-num">01</span>
+            <h3 class="process-title">Diagnóstico</h3>
+            <p class="process-desc">Entendo o problema, o contexto e os dados disponíveis.</p>
+          </div>
+          <div class="process-step">
+            <span class="process-num">02</span>
+            <h3 class="process-title">Estratégia</h3>
+            <p class="process-desc">Defino a abordagem técnica e priorizo impacto.</p>
+          </div>
+          <div class="process-step">
+            <span class="process-num">03</span>
+            <h3 class="process-title">Construção</h3>
+            <p class="process-desc">Desenvolvo com foco em qualidade e escalabilidade.</p>
+          </div>
+          <div class="process-step">
+            <span class="process-num">04</span>
+            <h3 class="process-title">Entrega</h3>
+            <p class="process-desc">Implemento, documento e garanto que funcione na prática.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Experiência ── -->
+    <section class="section section--alt" id="experience">
+      <div class="container">
+        <p class="eyebrow">04 — Experiência</p>
+        <h2 class="section-heading">Trajetória profissional.</h2>
+        <div class="exp-list" id="exp-list"></div>
+      </div>
+    </section>
+
+    <!-- ── Projetos ── -->
+    <section class="section" id="projects">
+      <div class="container">
+        <p class="eyebrow">05 — Projetos</p>
+        <h2 class="section-heading">Trabalho selecionado.</h2>
+        <div class="projects-list" id="projects-list">
+          <div class="project-skeleton">
+            <div class="sk-line sk-lg"></div>
+            <div class="sk-line sk-sm"></div>
+          </div>
+          <div class="project-skeleton">
+            <div class="sk-line sk-lg"></div>
+            <div class="sk-line sk-sm"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contato ── -->
+    <section class="section section--alt" id="contact">
+      <div class="container">
+        <div class="contact-layout">
+          <div class="contact-left">
+            <p class="eyebrow">06 — Contato</p>
+            <h2 class="section-heading">Tem um projeto<br>em mente?</h2>
+            <p class="contact-text">Me conta. Estou disponível para conversar sobre dados, automação e IA.</p>
+            <div class="contact-links" id="contact-links"></div>
+          </div>
+          <div class="contact-right">
+            <form class="contact-form" id="contact-form">
+              <div class="form-field">
+                <input type="text" id="f-name" placeholder=" " required>
+                <label for="f-name">Nome</label>
+              </div>
+              <div class="form-field">
+                <input type="email" id="f-email" placeholder=" " required>
+                <label for="f-email">Email</label>
+              </div>
+              <div class="form-field">
+                <textarea id="f-msg" rows="5" placeholder=" " required></textarea>
+                <label for="f-msg">Mensagem</label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                <span class="btn-label">Enviar</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- ── Footer ── -->
   <footer class="footer">
-    <div class="container footer-content">
-      <p class="footer-text">&copy; 2026 Yuri Gomes. Todos os direitos reservados.</p>
-      <div class="footer-socials" id="footer-socials"></div>
+    <div class="container footer-inner">
+      <span class="footer-copy">&copy; 2026 Yuri Gomes</span>
+      <div class="footer-links" id="footer-links"></div>
     </div>
   </footer>
 
