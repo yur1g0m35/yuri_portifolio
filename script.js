@@ -1,5 +1,6 @@
 /* ══════════════════════════════════════════
-   Yuri Gomes — Portfolio v3
+   Yuri Gomes — Portfolio v4
+   15 Animation Systems
    ══════════════════════════════════════════ */
 
 const GITHUB_USER = 'yur1g0m35';
@@ -36,11 +37,16 @@ const LANG_COLORS = {
   Shell: '#89e051', PHP: '#4F5D95', Ruby: '#701516',
 };
 
-/* ── Helpers ── */
-function $(s) { return document.querySelector(s); }
-function $$(s) { return document.querySelectorAll(s); }
-function esc(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
-function langColor(l) { return LANG_COLORS[l] || '#6e6e80'; }
+/* ══════ Helpers ══════ */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const esc = t => { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; };
+const langColor = l => LANG_COLORS[l] || '#7a7a90';
+const lerp = (a, b, n) => a + (b - a) * n;
+const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+
+const isMobile = () => window.matchMedia('(pointer: coarse)').matches;
+const isDesktop = () => !isMobile();
 
 function svgIcon(name) {
   const m = {
@@ -51,7 +57,244 @@ function svgIcon(name) {
   return m[name] || '';
 }
 
-/* ── Navbar ── */
+/* ══════ 01. Custom Cursor ══════ */
+function initCursor() {
+  if (isMobile()) return;
+  const cursor = $('#cursor');
+  const glow = $('#cursor-glow');
+  let mx = 0, my = 0, cx = 0, cy = 0, gx = 0, gy = 0;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function animate() {
+    cx = lerp(cx, mx, 0.15);
+    cy = lerp(cy, my, 0.15);
+    gx = lerp(gx, mx, 0.08);
+    gy = lerp(gy, my, 0.08);
+    cursor.style.left = cx + 'px';
+    cursor.style.top = cy + 'px';
+    glow.style.left = gx + 'px';
+    glow.style.top = gy + 'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  const hoverEls = $$('a, button, .magnetic, .tilt-card, input, textarea');
+  hoverEls.forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+}
+
+/* ══════ 02. Magnetic Buttons ══════ */
+function initMagnetic() {
+  if (isMobile()) return;
+  $$('.magnetic').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'translate(0, 0)';
+    });
+  });
+}
+
+/* ══════ 04. 3D Tilt Cards ══════ */
+function initTilt() {
+  if (isMobile()) return;
+  $$('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) scale(1)';
+    });
+  });
+}
+
+/* ══════ 07. Hero Parallax ══════ */
+function initParallax() {
+  const heroVisual = $('#hero-visual');
+  if (!heroVisual) return;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y < window.innerHeight) {
+          heroVisual.style.transform = `translateY(${y * 0.15}px)`;
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/* ══════ 08. Scroll Progress ══════ */
+function initScrollProgress() {
+  const bar = $('#scroll-progress');
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+        bar.style.width = pct + '%';
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/* ══════ 09. Stagger Reveal ══════ */
+function initReveal() {
+  const selectors = [
+    '.eyebrow', '.section-heading', '.about-text', '.about-meta',
+    '.expertise-item', '.process-step', '.exp-row', '.project-item',
+    '.contact-left', '.contact-form'
+  ];
+  const els = $$(selectors.join(', '));
+
+  const groups = {};
+  els.forEach(el => {
+    const parent = el.parentElement;
+    const key = parent.className;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(el);
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('reveal', 'visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+  els.forEach((el, i) => {
+    el.classList.add('reveal');
+    const siblings = groups[el.parentElement.className] || [el];
+    const idx = siblings.indexOf(el);
+    el.style.transitionDelay = (idx * 0.08) + 's';
+    obs.observe(el);
+  });
+}
+
+/* ══════ 11. Smooth Counter ══════ */
+function initCounters() {
+  const nums = $$('.expertise-num, .process-num');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = parseInt(el.textContent);
+        if (isNaN(target)) { obs.unobserve(el); return; }
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 20));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = String(current).padStart(2, '0');
+        }, 30);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  nums.forEach(el => obs.observe(el));
+}
+
+/* ══════ 12. Floating Particles ══════ */
+function initParticles() {
+  const canvas = $('#particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], mx = 0, my = 0;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.size = Math.random() * 2 + 0.5;
+      this.alpha = Math.random() * 0.4 + 0.1;
+      this.color = `rgba(108, 99, 255, ${this.alpha})`;
+    }
+    update() {
+      const dx = mx - this.x;
+      const dy = my - this.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 150) {
+        this.vx += dx * 0.00005;
+        this.vy += dy * 0.00005;
+      }
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    resize();
+    const count = Math.min(80, Math.floor((w * h) / 15000));
+    particles = Array.from({ length: count }, () => new Particle());
+  }
+
+  function drawLines() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(108, 99, 255, ${0.08 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => { p.update(); p.draw(); });
+    drawLines();
+    requestAnimationFrame(animate);
+  }
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  window.addEventListener('resize', () => { resize(); init(); });
+  init();
+  animate();
+}
+
+/* ══════ Navbar ══════ */
 function initNavbar() {
   const nav = $('#navbar');
   const toggle = $('#nav-toggle');
@@ -85,30 +328,12 @@ function initNavbar() {
   secs.forEach(s => obs.observe(s));
 }
 
-/* ── Reveal on Scroll ── */
-function initReveal() {
-  const els = $$('.eyebrow, .section-heading, .about-text, .about-meta, .expertise-item, .process-step, .exp-row, .project-item, .contact-left, .contact-form, .hero-content, .hero-visual');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('reveal', 'visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  els.forEach(el => {
-    el.classList.add('reveal');
-    obs.observe(el);
-  });
-}
-
-/* ── Profile ── */
+/* ══════ Profile ══════ */
 async function loadProfile() {
   try {
     const r = await fetch(`https://api.github.com/users/${GITHUB_USER}`);
     if (!r.ok) throw new Error();
-    const u = await r.json();
-    renderProfile(u);
+    renderProfile(await r.json());
   } catch {
     const img = $('#avatar');
     img.src = 'https://avatars.githubusercontent.com/u/157255680?v=4';
@@ -147,7 +372,7 @@ function renderProfile(u) {
   });
 }
 
-/* ── Experience ── */
+/* ══════ Experience ══════ */
 function renderExperience() {
   const el = $('#exp-list');
   el.innerHTML = EXPERIENCES.map(e => `
@@ -163,7 +388,7 @@ function renderExperience() {
     </div>`).join('');
 }
 
-/* ── Projects ── */
+/* ══════ Projects ══════ */
 async function loadRepos() {
   try {
     const r = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
@@ -184,7 +409,7 @@ async function loadRepos() {
 function renderRepos(repos) {
   const el = $('#projects-list');
   if (!repos.length) {
-    em.innerHTML = '<div class="project-item"><span class="project-num">—</span><div class="project-body"><h3 class="project-name">Nenhum projeto</h3></div></div>';
+    el.innerHTML = '<div class="project-item"><span class="project-num">—</span><div class="project-body"><h3 class="project-name">Nenhum projeto</h3></div></div>';
     return;
   }
   el.innerHTML = repos.map((r, i) => {
@@ -204,7 +429,7 @@ function renderRepos(repos) {
   }).join('');
 }
 
-/* ── Form ── */
+/* ══════ Form ══════ */
 function initForm() {
   const f = $('#contact-form');
   f.addEventListener('submit', e => {
@@ -220,10 +445,17 @@ function initForm() {
   });
 }
 
-/* ── Init ── */
+/* ══════ Init ══════ */
 document.addEventListener('DOMContentLoaded', () => {
+  initCursor();
+  initMagnetic();
+  initTilt();
+  initParallax();
+  initScrollProgress();
+  initParticles();
   initNavbar();
   initReveal();
+  initCounters();
   loadProfile();
   renderExperience();
   loadRepos();
