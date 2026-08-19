@@ -1,4 +1,5 @@
 const GITHUB_USER = 'yur1g0m35';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/yurisiqueiragomes/';
 
 const LANG_COLORS = {
   TypeScript: '#3178c6',
@@ -22,6 +23,59 @@ const LANG_COLORS = {
 function getLangColor(lang) {
   return LANG_COLORS[lang] || '#8b8b8b';
 }
+
+const EXPERIENCES = [
+  {
+    role: 'Analista de Projetos',
+    company: 'Every Cybersecurity, GRC and Privacy Solutions',
+    period: 'Ago 2026 - Presente',
+    location: 'Rio de Janeiro, RJ',
+    bullets: [
+      'Engenharia de Dados: pipelines com Python, SQL, PostgreSQL, SQLAlchemy e FastAPI',
+      'Modelagem e Governança de Dados: PostgreSQL, Alembic e Pydantic',
+      'Análise de Dados e BI: dashboards com Power BI, Google Sheets e React',
+      'Integração e Automação: APIs REST, Redis, Azure Entra ID e OpenAI',
+      'Web Scraping: extração automatizada com Python, Requests e BeautifulSoup',
+      'IA Aplicada: agentes com OpenAI GPT, Function Calling e memória contextual',
+    ],
+  },
+  {
+    role: 'Assistente Administrativo I',
+    company: 'Estácio',
+    period: 'Out 2025 - Fev 2026',
+    location: 'Rio de Janeiro, RJ',
+    bullets: [
+      'Liderança do time de TI, organização e acompanhamento de demandas',
+      'Monitoramento de chamados locais e suporte ao aluno',
+      'Monitoramento de redes e infraestrutura local',
+    ],
+  },
+  {
+    role: 'Auxiliar Administrativo',
+    company: 'Estácio',
+    period: 'Nov 2024 - Out 2025',
+    location: 'Rio de Janeiro, RJ',
+    bullets: [
+      'Automação com n8n, integração entre plataformas',
+      'Salesforce para atendimento e gestão de leads',
+      'Automação com Google Sheets e Google Apps Script',
+      'Gestão de redes sociais e Instagram',
+    ],
+  },
+  {
+    role: 'Auxiliar de Escritório',
+    company: 'IBRAP - Instituto Brasileiro de Podologia',
+    period: 'Set 2023 - Nov 2024',
+    location: 'Rio de Janeiro, RJ',
+    bullets: [
+      'Automação de processos com Google Sheets e Google Apps Script',
+      'Dashboards no Power BI para KPIs de vendas e financeiros',
+      'Análise de dados financeiros e fluxo de caixa',
+      'Gestão de dados de e-commerce na TrayCommerce',
+      'Desenvolvimento e manutenção de sites em WordPress',
+    ],
+  },
+];
 
 function createSVGIcon(name) {
   const icons = {
@@ -64,6 +118,15 @@ function renderProfile(user) {
   }
 
   const socialsContainer = document.getElementById('socials');
+
+  const linkedinLink = document.createElement('a');
+  linkedinLink.href = LINKEDIN_URL;
+  linkedinLink.target = '_blank';
+  linkedinLink.rel = 'noopener noreferrer';
+  linkedinLink.innerHTML = createSVGIcon('linkedin');
+  linkedinLink.setAttribute('aria-label', 'LinkedIn');
+  socialsContainer.appendChild(linkedinLink);
+
   const githubLink = document.createElement('a');
   githubLink.href = user.html_url;
   githubLink.target = '_blank';
@@ -77,12 +140,21 @@ function renderProfile(user) {
     blogLink.href = user.blog.startsWith('http') ? user.blog : `https://${user.blog}`;
     blogLink.target = '_blank';
     blogLink.rel = 'noopener noreferrer';
-    blogLink.innerHTML = createSVGIcon('linkedin');
+    blogLink.innerHTML = createSVGIcon('email');
     blogLink.setAttribute('aria-label', 'Website');
     socialsContainer.appendChild(blogLink);
   }
 
   const footerSocials = document.getElementById('footer-socials');
+
+  const linkedinFooter = document.createElement('a');
+  linkedinFooter.href = LINKEDIN_URL;
+  linkedinFooter.target = '_blank';
+  linkedinFooter.rel = 'noopener noreferrer';
+  linkedinFooter.innerHTML = createSVGIcon('linkedin');
+  linkedinFooter.setAttribute('aria-label', 'LinkedIn');
+  footerSocials.appendChild(linkedinFooter);
+
   const ghFooter = document.createElement('a');
   ghFooter.href = user.html_url;
   ghFooter.target = '_blank';
@@ -140,6 +212,27 @@ function renderRepos(repos) {
   observeFadeIns();
 }
 
+function renderExperiences() {
+  const timeline = document.getElementById('experience-timeline');
+
+  timeline.innerHTML = EXPERIENCES.map(
+    (exp) => `
+    <div class="exp-card fade-in">
+      <div class="exp-header">
+        <span class="exp-role">${exp.role}</span>
+        <span class="exp-period">${exp.period}</span>
+      </div>
+      <div class="exp-company">${exp.company}</div>
+      <div class="exp-location">${exp.location}</div>
+      <ul class="exp-bullets">
+        ${exp.bullets.map((b) => `<li>${b}</li>`).join('')}
+      </ul>
+    </div>`
+  ).join('');
+
+  observeFadeIns();
+}
+
 function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
@@ -163,7 +256,7 @@ function observeFadeIns() {
 }
 
 function setupScrollAnimations() {
-  const sections = document.querySelectorAll('.section-title, .skill-category, .project-card, .contact-content');
+  const sections = document.querySelectorAll('.section-title, .skill-category, .exp-card, .project-card, .contact-content');
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -200,6 +293,7 @@ function setupForm() {
 document.addEventListener('DOMContentLoaded', () => {
   fetchProfile();
   fetchRepos();
+  renderExperiences();
   setupScrollAnimations();
   setupForm();
 });
