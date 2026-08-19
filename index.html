@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yuri Gomes — Portfólio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="hero" id="hero">
+    <div class="hero-content">
+      <img id="avatar" class="avatar" src="" alt="Foto de perfil">
+      <h1 class="hero-name">Yuri Gomes</h1>
+      <p class="hero-tagline">Full Stack Developer</p>
+      <div class="hero-socials" id="socials"></div>
+    </div>
+    <a href="#about" class="scroll-arrow" aria-label="Rolar para baixo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+      </svg>
+    </a>
+  </header>
+
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">Sobre Mim</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p id="bio"></p>
+          <div class="about-details">
+            <span class="detail-item" id="location-detail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span id="location"></span>
+            </span>
+            <span class="detail-item" id="company-detail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+              <span id="company"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <h2 class="section-title">Habilidades</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Front-end</h3>
+          <div class="skill-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Back-end</h3>
+          <div class="skill-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Python</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">Databases</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Ferramentas</h3>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Vercel</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projetos</h2>
+      <div class="projects-grid" id="projects-grid">
+        <div class="project-card skeleton">
+          <div class="skeleton-line skeleton-title"></div>
+          <div class="skeleton-line skeleton-lang"></div>
+        </div>
+        <div class="project-card skeleton">
+          <div class="skeleton-line skeleton-title"></div>
+          <div class="skeleton-line skeleton-lang"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contato</h2>
+      <div class="contact-content">
+        <p class="contact-text">Quer conversar? Me mande uma mensagem!</p>
+        <form class="contact-form" id="contact-form">
+          <input type="text" placeholder="Seu nome" required>
+          <input type="email" placeholder="Seu email" required>
+          <textarea placeholder="Sua mensagem" rows="5" required></textarea>
+          <button type="submit" class="btn-submit">Enviar Mensagem</button>
+        </form>
+        <div class="social-links" id="footer-socials"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2026 Yuri Gomes. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
