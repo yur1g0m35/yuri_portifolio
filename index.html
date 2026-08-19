@@ -25,12 +25,20 @@
   <!-- Custom Cursor -->
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor-trail" id="cursor-trail" aria-hidden="true"></div>
 
   <!-- Film Grain Overlay -->
   <div class="grain" aria-hidden="true"></div>
 
   <!-- Particles Canvas -->
   <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- Floating Orbs -->
+  <div class="orbs" id="orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
 
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
@@ -44,6 +52,7 @@
         <li><a href="#projects" class="nav-link">Projetos</a></li>
         <li><a href="#contact" class="nav-link nav-link--cta">Contato</a></li>
       </ul>
+      <div class="nav-underline" id="nav-underline" aria-hidden="true"></div>
       <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
         <span></span><span></span>
       </button>
@@ -60,24 +69,14 @@
           <h1 class="hero-headline" id="hero-headline">
             <span class="char-reveal">T</span><span class="char-reveal">r</span><span class="char-reveal">a</span><span class="char-reveal">n</span><span class="char-reveal">s</span><span class="char-reveal">f</span><span class="char-reveal">o</span><span class="char-reveal">r</span><span class="char-reveal">m</span><span class="char-reveal">o</span><span class="char-reveal"> </span><span class="char-reveal">d</span><span class="char-reveal">a</span><span class="char-reveal">d</span><span class="char-reveal">o</span><span class="char-reveal">s</span><span class="char-reveal"> </span><span class="char-reveal">c</span><span class="char-reveal">o</span><span class="char-reveal">m</span><span class="char-reveal">p</span><span class="char-reveal">l</span><span class="char-reveal">e</span><span class="char-reveal">x</span><span class="char-reveal">o</span><span class="char-reveal">s</span><span class="char-reveal"> </span><span class="char-reveal">e</span><span class="char-reveal">m</span><br><span class="char-reveal hero-accent">d</span><span class="char-reveal hero-accent">e</span><span class="char-reveal hero-accent">c</span><span class="char-reveal hero-accent">i</span><span class="char-reveal hero-accent">s</span><span class="char-reveal hero-accent">õ</span><span class="char-reveal hero-accent">e</span><span class="char-reveal hero-accent">s</span><span class="char-reveal"> </span><span class="char-reveal hero-accent">i</span><span class="char-reveal hero-accent">n</span><span class="char-reveal hero-accent">t</span><span class="char-reveal hero-accent">e</span><span class="char-reveal hero-accent">l</span><span class="char-reveal hero-accent">i</span><span class="char-reveal hero-accent">g</span><span class="char-reveal hero-accent">e</span><span class="char-reveal hero-accent">n</span><span class="char-reveal hero-accent">t</span><span class="char-reveal hero-accent">e</span><span class="char-reveal hero-accent">s</span><span class="char-reveal hero-accent">.</span>
           </h1>
-          <p class="hero-sub">
-            Desenvolvo soluções de engenharia de dados, automação e inteligência artificial
-            que conectam informação a resultado.
+          <p class="hero-sub word-reveal">
+            Desenvolvo soluções de engenharia de dados, automação e inteligência artificial que conectam informação a resultado.
           </p>
           <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary magnetic">Ver Projetos</a>
-            <a href="https://www.linkedin.com/in/yurisiqueiragomes/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost magnetic">LinkedIn →</a>
+            <a href="#projects" class="btn btn-primary magnetic ripple-btn">Ver Projetos</a>
+            <a href="https://www.linkedin.com/in/yurisiqueiragomes/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost magnetic ripple-btn">LinkedIn →</a>
           </div>
-        </div>
-        <div class="hero-visual" id="hero-visual">
-          <div class="hero-img-wrapper distortion">
-            <img id="avatar" class="hero-img" src="" alt="Yuri Gomes">
-          </div>
-          <div class="hero-deco" aria-hidden="true">
-            <span class="deco-line"></span>
-            <span class="deco-line"></span>
-            <span class="deco-line"></span>
-          </div>
+          <div class="hero-socials" id="socials"></div>
         </div>
       </div>
       <div class="hero-scroll-hint" aria-hidden="true">
@@ -92,12 +91,12 @@
     </div>
 
     <!-- Sobre -->
-    <section class="section section--alt" id="about">
+    <section class="section section--alt clip-reveal" id="about">
       <div class="container">
         <div class="about-layout">
           <div class="about-left">
             <p class="eyebrow">01 — Sobre</p>
-            <h2 class="section-heading glitch" data-text="Quem está por trás do código.">Quem está<br>por trás do código.</h2>
+            <h2 class="section-heading scramble" data-text="Quem está por trás do código.">Quem está<br>por trás do código.</h2>
           </div>
           <div class="about-right">
             <p class="about-text" id="bio">
@@ -124,26 +123,26 @@
     </div>
 
     <!-- Especialidades -->
-    <section class="section" id="expertise">
+    <section class="section clip-reveal" id="expertise">
       <div class="container">
         <p class="eyebrow">02 — Especialidades</p>
-        <h2 class="section-heading glitch" data-text="Áreas de atuação.">Áreas de atuação.</h2>
+        <h2 class="section-heading scramble" data-text="Áreas de atuação.">Áreas de atuação.</h2>
         <div class="expertise-list">
-          <div class="expertise-item">
+          <div class="expertise-item glow-border">
             <span class="expertise-num">01</span>
             <div class="expertise-content">
               <h3 class="expertise-title">Engenharia de Dados</h3>
               <p class="expertise-desc">Pipelines, modelagem, governança e qualidade de dados. Do coleta ao armazenamento, com foco em confiabilidade.</p>
             </div>
           </div>
-          <div class="expertise-item">
+          <div class="expertise-item glow-border">
             <span class="expertise-num">02</span>
             <div class="expertise-content">
               <h3 class="expertise-title">Automação Inteligente</h3>
               <p class="expertise-desc">Integrações, workflows e processos automatizados com IA. Reduzo trabalho manual e aumento velocidade operacional.</p>
             </div>
           </div>
-          <div class="expertise-item">
+          <div class="expertise-item glow-border">
             <span class="expertise-num">03</span>
             <div class="expertise-content">
               <h3 class="expertise-title">Análise & Visualização</h3>
@@ -155,27 +154,27 @@
     </section>
 
     <!-- Processo -->
-    <section class="section section--alt" id="process">
+    <section class="section section--alt clip-reveal" id="process">
       <div class="container">
         <p class="eyebrow">03 — Processo</p>
-        <h2 class="section-heading glitch" data-text="Como trabalho.">Como trabalho.</h2>
+        <h2 class="section-heading scramble" data-text="Como trabalho.">Como trabalho.</h2>
         <div class="process-grid">
-          <div class="process-step tilt-card">
+          <div class="process-step tilt-card glow-border">
             <span class="process-num">01</span>
             <h3 class="process-title">Diagnóstico</h3>
             <p class="process-desc">Entendo o problema, o contexto e os dados disponíveis.</p>
           </div>
-          <div class="process-step tilt-card">
+          <div class="process-step tilt-card glow-border">
             <span class="process-num">02</span>
             <h3 class="process-title">Estratégia</h3>
             <p class="process-desc">Defino a abordagem técnica e priorizo impacto.</p>
           </div>
-          <div class="process-step tilt-card">
+          <div class="process-step tilt-card glow-border">
             <span class="process-num">03</span>
             <h3 class="process-title">Construção</h3>
             <p class="process-desc">Desenvolvo com foco em qualidade e escalabilidade.</p>
           </div>
-          <div class="process-step tilt-card">
+          <div class="process-step tilt-card glow-border">
             <span class="process-num">04</span>
             <h3 class="process-title">Entrega</h3>
             <p class="process-desc">Implemento, documento e garanto que funcione na prática.</p>
@@ -185,19 +184,19 @@
     </section>
 
     <!-- Experiência -->
-    <section class="section" id="experience">
+    <section class="section clip-reveal" id="experience">
       <div class="container">
         <p class="eyebrow">04 — Experiência</p>
-        <h2 class="section-heading glitch" data-text="Trajetória profissional.">Trajetória profissional.</h2>
+        <h2 class="section-heading scramble" data-text="Trajetória profissional.">Trajetória profissional.</h2>
         <div class="exp-list" id="exp-list"></div>
       </div>
     </section>
 
     <!-- Projetos -->
-    <section class="section section--alt" id="projects">
+    <section class="section section--alt clip-reveal" id="projects">
       <div class="container">
         <p class="eyebrow">05 — Projetos</p>
-        <h2 class="section-heading glitch" data-text="Trabalho selecionado.">Trabalho selecionado.</h2>
+        <h2 class="section-heading scramble" data-text="Trabalho selecionado.">Trabalho selecionado.</h2>
         <div class="projects-list" id="projects-list">
           <div class="project-skeleton"><div class="sk-line sk-lg"></div><div class="sk-line sk-sm"></div></div>
           <div class="project-skeleton"><div class="sk-line sk-lg"></div><div class="sk-line sk-sm"></div></div>
@@ -206,12 +205,12 @@
     </section>
 
     <!-- Contato -->
-    <section class="section" id="contact">
+    <section class="section clip-reveal" id="contact">
       <div class="container">
         <div class="contact-layout">
           <div class="contact-left">
             <p class="eyebrow">06 — Contato</p>
-            <h2 class="section-heading glitch" data-text="Tem um projeto em mente?">Tem um projeto<br>em mente?</h2>
+            <h2 class="section-heading scramble" data-text="Tem um projeto em mente?">Tem um projeto<br>em mente?</h2>
             <p class="contact-text">Me conta. Estou disponível para conversar sobre dados, automação e IA.</p>
             <div class="contact-links" id="contact-links"></div>
           </div>
@@ -229,7 +228,7 @@
                 <textarea id="f-msg" rows="5" placeholder=" " required></textarea>
                 <label for="f-msg">Mensagem</label>
               </div>
-              <button type="submit" class="btn btn-primary btn-block magnetic">
+              <button type="submit" class="btn btn-primary btn-block magnetic ripple-btn">
                 <span class="btn-label">Enviar</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </button>
