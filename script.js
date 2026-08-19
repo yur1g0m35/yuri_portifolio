@@ -552,6 +552,7 @@ function initForm() {
 
 /* ══════ Init ══════ */
 document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('js-ready');
   initCursor();
   initCursorTrail();
   initMagnetic();

@@ -231,12 +231,12 @@ a { color: inherit; text-decoration: none; }
 .section--alt { background: var(--bg-alt); }
 
 /* ══════ 17. Section Clip Reveal ══════ */
-.clip-reveal {
+.js-ready .clip-reveal {
   clip-path: inset(0 0 100% 0);
   transition: clip-path 1s var(--ease-out);
 }
 
-.clip-reveal.visible {
+.js-ready .clip-reveal.visible {
   clip-path: inset(0 0 0% 0);
 }
 
@@ -498,14 +498,14 @@ a { color: inherit; text-decoration: none; }
 .hero-accent { color: var(--accent); }
 
 /* ══════ Word Reveal ══════ */
-.word-reveal span {
+.js-ready .word-reveal span {
   display: inline-block;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
-.word-reveal.visible span {
+.js-ready .word-reveal.visible span {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1007,13 +1007,13 @@ a { color: inherit; text-decoration: none; }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.reveal {
+.js-ready .reveal {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
 }
 
-.reveal.visible {
+.js-ready .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
