@@ -498,7 +498,7 @@ a { color: inherit; text-decoration: none; }
 
 .char-reveal {
   display: inline-block;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .js-ready .char-reveal {
