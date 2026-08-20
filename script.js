@@ -135,36 +135,7 @@ function initScrollProgress() {
 
 /* ══════ 09. Stagger Reveal ══════ */
 function initReveal() {
-  const selectors = [
-    '.eyebrow', '.section-heading', '.about-text', '.about-meta',
-    '.expertise-item', '.process-step', '.exp-row', '.project-item',
-    '.contact-left', '.contact-form', '.clip-reveal'
-  ];
-  const els = $$(selectors.join(', '));
-
-  const groups = {};
-  els.forEach(el => {
-    const key = el.parentElement.className;
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(el);
-  });
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('reveal', 'visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-
-  els.forEach(el => {
-    el.classList.add('reveal');
-    const siblings = groups[el.parentElement.className] || [el];
-    const idx = siblings.indexOf(el);
-    el.style.transitionDelay = (idx * 0.08) + 's';
-    obs.observe(el);
-  });
+  observeRevealElements($$('.eyebrow, .section-heading, .about-text, .about-meta, .expertise-item, .process-step, .contact-left, .contact-form'));
 }
 
 /* ══════ 11. Smooth Counter / Number Pop ══════ */
@@ -291,18 +262,31 @@ function initCursorTrail() {
   });
 }
 
+/* ══════ 03. Character Reveal ══════ */
+function initCharReveal() {
+  $$('.char-reveal').forEach((el, i) => {
+    el.style.animationDelay = (i * 0.03) + 's';
+  });
+}
+
 /* ══════ 17. Section Clip Reveal ══════ */
 function initClipReveal() {
   const els = $$('.clip-reveal');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
+  if (!els.length) return;
+
+  function revealInView() {
+    els.forEach(el => {
+      if (el.classList.contains('visible')) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1) {
+        el.classList.add('visible');
       }
     });
-  }, { threshold: 0.1 });
-  els.forEach(el => obs.observe(el));
+  }
+
+  revealInView();
+  window.addEventListener('scroll', revealInView, { passive: true });
+  window.addEventListener('resize', revealInView, { passive: true });
 }
 
 /* ══════ 18. Hover Ripple ══════ */
@@ -410,8 +394,14 @@ function initWordReveal() {
         obs.unobserve(el);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.15 });
   obs.observe(el);
+
+  const rect = el.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    el.classList.add('visible');
+    el.querySelectorAll('span').forEach((s, i) => { s.style.transitionDelay = (i * 0.04) + 's'; });
+  }
 }
 
 /* ══════ Navbar ══════ */
@@ -490,7 +480,7 @@ function renderSocials(u) {
 function renderExperience() {
   const el = $('#exp-list');
   el.innerHTML = EXPERIENCES.map(e => `
-    <div class="exp-row reveal">
+    <div class="exp-row">
       <span class="exp-period">${e.period}</span>
       <div class="exp-body">
         <h3 class="exp-role">${e.role}</h3>
@@ -523,7 +513,7 @@ function renderRepos(repos) {
       ? `<span class="project-tag" style="background:${langColor(r.language)}22;color:${langColor(r.language)}">${r.language}</span>`
       : '';
     return `
-    <div class="project-item reveal">
+    <div class="project-item">
       <span class="project-num">${num}</span>
       <div class="project-body">
         <h3 class="project-name">${esc(r.name)}</h3>
@@ -553,6 +543,7 @@ function initForm() {
 /* ══════ Init ══════ */
 document.addEventListener('DOMContentLoaded', async () => {
   document.body.classList.add('js-ready');
+  initCharReveal();
   initCursor();
   initCursorTrail();
   initMagnetic();
@@ -565,10 +556,47 @@ document.addEventListener('DOMContentLoaded', async () => {
   initNavUnderline();
   initWordReveal();
   initNavbar();
-  loadProfile();
-  renderExperience();
-  await loadRepos();
   initReveal();
   initCounters();
   initForm();
+  loadProfile();
+  renderExperience();
+  observeRevealElements($$('.exp-row'));
+  await loadRepos();
+  observeRevealElements($$('#projects-list .project-item'));
 });
+
+function observeRevealElements(els) {
+  if (!els.length) return;
+
+  const pending = els.filter(el => !el.classList.contains('reveal'));
+  if (!pending.length) return;
+
+  const groups = {};
+  pending.forEach(el => {
+    const key = el.parentElement.className;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(el);
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+  pending.forEach(el => {
+    el.classList.add('reveal');
+    const siblings = groups[el.parentElement.className] || [el];
+    el.style.transitionDelay = (siblings.indexOf(el) * 0.08) + 's';
+    obs.observe(el);
+
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add('visible');
+    }
+  });
+}
