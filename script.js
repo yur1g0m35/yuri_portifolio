@@ -551,7 +551,7 @@ function initForm() {
 }
 
 /* ══════ Init ══════ */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   document.body.classList.add('js-ready');
   initCursor();
   initCursorTrail();
@@ -565,10 +565,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavUnderline();
   initWordReveal();
   initNavbar();
-  initReveal();
-  initCounters();
   loadProfile();
   renderExperience();
-  loadRepos();
+  await loadRepos();
+  initReveal();
+  initCounters();
   initForm();
 });
